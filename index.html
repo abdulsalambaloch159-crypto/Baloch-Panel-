@@ -3,81 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BALOCH HACKER PANEL</title>
+    <title>BALOCH PRIVATE PANEL</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #050505;
-            background-image: radial-gradient(circle, #220000 0%, #050505 100%);
-            color: #ff0000;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .panel {
-            width: 320px;
-            background: rgba(10, 10, 10, 0.9);
-            border: 2px solid #ff0000;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 0 20px #ff0000;
-            text-align: center;
-        }
-        h1 {
-            font-size: 2rem;
-            text-shadow: 0 0 10px #ff0000;
-            margin-bottom: 5px;
-            letter-spacing: 5px;
-        }
-        .version {
-            font-size: 0.8rem;
-            color: #888;
-            margin-bottom: 20px;
-        }
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: transparent;
-            color: #ff0000;
-            border: 1px solid #ff0000;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.4s;
-            text-transform: uppercase;
-            box-sizing: border-box;
-        }
-        .btn:hover {
-            background: #ff0000;
-            color: #000;
-            box-shadow: 0 0 15px #ff0000;
-            cursor: pointer;
-        }
-        .status-bar {
-            margin-top: 15px;
-            font-size: 0.7rem;
-            color: #00ff00;
-            text-transform: uppercase;
-        }
+        body { margin: 0; padding: 0; background: #050505; color: #ff0000; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .panel { width: 320px; background: rgba(10, 10, 10, 0.9); border: 2px solid #ff0000; border-radius: 15px; padding: 20px; box-shadow: 0 0 20px #ff0000; text-align: center; }
+        input { background: #111; border: 1px solid #ff0000; color: white; padding: 10px; width: 80%; margin-bottom: 10px; border-radius: 5px; text-align: center; }
+        .btn { display: block; width: 100%; padding: 12px; margin: 10px 0; background: transparent; color: #ff0000; border: 1px solid #ff0000; border-radius: 5px; text-decoration: none; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .btn:hover { background: #ff0000; color: #000; box-shadow: 0 0 15px #ff0000; }
+        #mainPanel { display: none; }
     </style>
 </head>
 <body>
-    <div class="panel">
-        <h1>BALOCH</h1>
-        <div class="version">V1.0 PREMIUM PANEL</div>
-        
-        <a href="#" class="btn">Auto Headshot [OFF]</a>
-        <a href="#" class="btn">Aim Bot [OFF]</a>
-        <a href="#" class="btn">Antiban Bypass</a>
-        <a href="#" class="btn">Contact Dev</a>
 
-        <div class="status-bar">● System: Protected & Active</div>
+    <div id="loginBox" class="panel">
+        <h1>LOGIN</h1>
+        <p>ENTER ACCESS KEY</p>
+        <input type="password" id="passInput" placeholder="Password Here...">
+        <button class="btn" onclick="checkPass()">ACCESS PANEL</button>
     </div>
+
+    <div id="mainPanel" class="panel">
+        <h1>BALOCH</h1>
+        <div style="color:#888; font-size:0.8rem; margin-bottom:20px;">V1.0 PRIVATE MOD</div>
+        <button class="btn" onclick="alert('AUTO HEADSHOT ACTIVATED!')">Auto Headshot [OFF]</button>
+        <button class="btn" onclick="alert('AIM BOT ACTIVATED!')">Aim Bot [OFF]</button>
+        <a href="https://wa.me/YOUR_NUMBER" class="btn">CONTACT OWNER</a>
+        <div style="color:#00ff00; font-size:0.7rem; margin-top:15px;">● SYSTEM: ENCRYPTED</div>
+    </div>
+
+    <script>
+        function checkPass() {
+            var pass = document.getElementById("passInput").value;
+            if(pass == "BALOCH786") { // Yeh aapka password hai
+                document.getElementById("loginBox").style.display = "none";
+                document.getElementById("mainPanel").style.display = "block";
+            } else {
+                alert("WRONG PASSWORD! ACCESS DENIED.");
+            }
+        }
+    </script>
 </body>
 </html>
