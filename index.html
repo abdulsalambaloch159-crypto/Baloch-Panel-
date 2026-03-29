@@ -1,46 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BALOCH PRIVATE PANEL</title>
-    <style>
-        body { margin: 0; padding: 0; background: #050505; color: #ff0000; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .panel { width: 320px; background: rgba(10, 10, 10, 0.9); border: 2px solid #ff0000; border-radius: 15px; padding: 20px; box-shadow: 0 0 20px #ff0000; text-align: center; }
-        input { background: #111; border: 1px solid #ff0000; color: white; padding: 10px; width: 80%; margin-bottom: 10px; border-radius: 5px; text-align: center; }
-        .btn { display: block; width: 100%; padding: 12px; margin: 10px 0; background: transparent; color: #ff0000; border: 1px solid #ff0000; border-radius: 5px; text-decoration: none; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-        .btn:hover { background: #ff0000; color: #000; box-shadow: 0 0 15px #ff0000; }
-        #mainPanel { display: none; }
-    </style>
-</head>
-<body>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const multiText = document.getElementById('multiplier');
+const betBtn = document.getElementById('betBtn');
+const cashoutBtn = document.getElementById('cashoutBtn');
 
-    <div id="loginBox" class="panel">
-        <h1>LOGIN</h1>
-        <p>ENTER ACCESS KEY</p>
-        <input type="password" id="passInput" placeholder="Password Here...">
-        <button class="btn" onclick="checkPass()">ACCESS PANEL</button>
-    </div>
+let multiplier = 1.00;
+let isFlying = false;
+let crashPoint = 0;
 
-    <div id="mainPanel" class="panel">
-        <h1>BALOCH</h1>
-        <div style="color:#888; font-size:0.8rem; margin-bottom:20px;">V1.0 PRIVATE MOD</div>
-        <button class="btn" onclick="alert('AUTO HEADSHOT ACTIVATED!')">Auto Headshot [OFF]</button>
-        <button class="btn" onclick="alert('AIM BOT ACTIVATED!')">Aim Bot [OFF]</button>
-        <a href="https://wa.me/YOUR_NUMBER" class="btn">CONTACT OWNER</a>
-        <div style="color:#00ff00; font-size:0.7rem; margin-top:15px;">● SYSTEM: ENCRYPTED</div>
-    </div>
+function startFlight() {
+    isFlying = true;
+    multiplier = 1.00;
+    // کریش پوائنٹ کا فارمولا (مثلاً 1 سے 10 کے درمیان)
+    crashPoint = (Math.random() * 5 + 1).toFixed(2); 
+    
+    betBtn.disabled = true;
+    cashoutBtn.disabled = false;
 
-    <script>
-        function checkPass() {
-            var pass = document.getElementById("passInput").value;
-            if(pass == "BALOCH786") { // Yeh aapka password hai
-                document.getElementById("loginBox").style.display = "none";
-                document.getElementById("mainPanel").style.display = "block";
-            } else {
-                alert("WRONG PASSWORD! ACCESS DENIED.");
-            }
+    let interval = setInterval(() => {
+        if (multiplier >= crashPoint) {
+            clearInterval(interval);
+            isFlying = false;
+            multiText.innerText = "FLEW AWAY!";
+            multiText.style.color = "red";
+            betBtn.disabled = false;
+            cashoutBtn.disabled = true;
+        } else {
+            multiplier += 0.01;
+            multiText.innerText = multiplier.toFixed(2) + "x";
+            multiText.style.color = "white";
         }
-    </script>
-</body>
-</html>
+    }, 100); // اسپیڈ کنٹرول کرنے کے لیے
+}
+
+betBtn.addEventListener('click', startFlight);
